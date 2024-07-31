@@ -185,7 +185,7 @@ int main() // função principal do programa
 		printf("\t1 - Registrar nomes\n");
 		printf("\t2 - Consultar nomes\n");
 		printf("\t3 - Deletar nomes\n");
-		printf("\t4 - Sair\n\n");
+		printf("\t4 - Sair do sistema\n\n");
 		printf("Opção: ");
 		//fim do menu
 		
@@ -210,7 +210,7 @@ int main() // função principal do programa
 			
 			case 4: //opcao de sair do programa
 				printf("### Cartório da EBAC ###\n\n");
-                printf("Você escolheu sair, esperamos que você volte em breve!\n");
+                printf("Você escolheu sair, esperamos que volte em breve!\n");
                 exit(0);
 				
 			default: //opcao default 
