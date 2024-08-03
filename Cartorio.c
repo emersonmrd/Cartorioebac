@@ -167,59 +167,93 @@ int deletar() // função responsavel por deletar os usuários do sistema
 
 int main() // função principal do programa
 {
+
 	//Definindo variáveis	
 	int opcao=0; //opcao do menu
 	int laco=1; //contador
+	char senhadigitada[10];// variável para senha
+	char resp='S'; // variável de resposta
 	
+	setlocale(LC_ALL, "Portuguese"); //definindo a linguagem
 	
-	for(laco=1;laco=1;) //laço do menu
+	while (resp != 'N' && resp != 'n') // loop da solicitação de senha
 	{
-	
-		system("cls"); //limpa a tela
-	
-		setlocale(LC_ALL, "Portuguese"); //definindo a linguagem
-		
-		//inicio do menu
-		printf("### Cartório da EBAC ###\n\n"); 
-		printf("Escolha a opção desejada do menu:\n\n");
-		printf("\t1 - Registrar nomes\n");
-		printf("\t2 - Consultar nomes\n");
-		printf("\t3 - Deletar nomes\n");
-		printf("\t4 - Sair do sistema\n\n");
-		printf("Opção: ");
-		//fim do menu
-		
-		scanf("%d", &opcao); //armazenando a escolha do usuário
-		
 		system("cls"); //limpa a tela
 		
-		//inicio da seleção 
-		switch(opcao)
+		// menu de login
+		printf("### Cartório da EBAC ###\n\n"); // titulo
+		printf("Login de administrador\n\n"); // login de adm
+		printf("Digite a sua senha: "); // solicita a senha
+		scanf("%s", senhadigitada); // armazena a senha
+		// fim do menu login
+		
+		if(strcmp(senhadigitada, "admin") == 0) // verifica se a senha esta correta
 		{
-			case 1: //opcao de registro de nomes
-				registro(); //chama a função de registro
-				break;
-				
-			case 2: //opcao de consulta de nomes
-				consulta(); //chama a função de consulta
-				break;
-				
-			case 3: //opcao de exclusao de nomes
-				deletar(); //chama a função de delete
-				break;	
 			
-			case 4: //opcao de sair do programa
-				printf("### Cartório da EBAC ###\n\n");
-                printf("Você escolheu sair, esperamos que volte em breve!\n");
-                exit(0);
+			while(laco == 1) //laço do menu
+			{
+			
+				system("cls"); //limpa a tela
 				
-			default: //opcao default 
-				printf("Essa opção não está disponivel!\n");
-				system("pause"); //pausa o sistema
-				break;		
-		}
-		// fim da seleção
+				//inicio do menu
+				printf("### Cartório da EBAC ###\n\n"); 
+				printf("Escolha a opção desejada do menu:\n\n");
+				printf("\t1 - Registrar nomes\n");
+				printf("\t2 - Consultar nomes\n");
+				printf("\t3 - Deletar nomes\n");
+				printf("\t4 - Sair do sistema\n\n");
+				printf("Opção: ");
+				//fim do menu
+				
+				scanf("%d", &opcao); //armazenando a escolha do usuário
+				
+				system("cls"); //limpa a tela
+				
+				//inicio da seleção 
+				switch(opcao)
+				{
+					case 1: //opcao de registro de nomes
+						registro(); //chama a função de registro
+						break;
+						
+					case 2: //opcao de consulta de nomes
+						consulta(); //chama a função de consulta
+						break;
+						
+					case 3: //opcao de exclusao de nomes
+						deletar(); //chama a função de delete
+						break;	
+					
+					case 4: //opcao de sair do programa
+						printf("### Cartório da EBAC ###\n\n");
+		                printf("Você escolheu sair, esperamos que volte em breve!\n");
+		                exit(0);
+						
+					default: //opcao default 
+						printf("Essa opção não está disponivel!\n");
+						system("pause"); //pausa o sistema
+						break;		
+				}
+				// fim da seleção
+				
+				 // printf("Software de livre uso, desenvolvido por Emerson Martins\n");
+			}
 		
-		 // printf("Software de livre uso, desenvolvido por Emerson Martins\n");
+		}
+		else
+		{
+	
+			printf("Senha incorreta!\n"); // informa que a senha esta incorreta
+			printf("Deseja tentar novamente? [S/N]\n"); //pergunta ao usuário se deseja tentar novamente
+			fflush(stdin); //limpa o buffer de entrada
+			
+			scanf(" %c", &resp); // adicione um espaço antes de %c para ignorar espaços em branco
+			if (resp != 'S' && resp != 's') //laço para verificar se o usuario deseja continuar
+			{
+                printf("Esperamos que volte em breve!\n"); //saudação
+                exit(0);
+            }
+		}			
 	}
+
 }
